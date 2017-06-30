@@ -12,4 +12,4 @@ I started out by splitting the included dataset  80/20 into training and validat
 
 ![drive video](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/run1.mp4) 
 
-[![Watch the video](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/run1.mp4)](http://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/0.jpg)]((https://github.com/calvinhobbes119/BehavioralCloning/blob/master/run1.mp4)

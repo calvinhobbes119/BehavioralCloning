@@ -14,4 +14,4 @@ I started out by splitting the included dataset  80/20 into training and validat
 
 Future improvements
 ---
-I plan to experiment using more augmented dataset created from the challenge track to get the car successfully complete the challenge course as well. Currently it makes it way through roughly 10% of the challenge course before veering off track. The validation loss is still fairly high after 20 epochs of training, indicating that the network weights have not yet converged. I am currently testing by increasing the number of epochs as well as collecting more data on the challenge track.
+I plan to experiment using more data from the challenge track so the car successfully completes the challenge course as well. Currently the car makes it way through roughly 10% of the challenge course before veering off track. The validation loss is still fairly high after 20 epochs of training, indicating that the network weights have not yet converged. I am currently testing by increasing the number of epochs as well as collecting more data on the challenge track.

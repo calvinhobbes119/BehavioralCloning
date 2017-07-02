@@ -65,7 +65,7 @@ I started out by splitting the dataset which was included with the Udacity proje
 
 [![Augmented Data Set 1](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/Untitled.png)](https://youtu.be/RFD8soBKVxM)
 
-In addition, I also included one additional dataset by going over the track for 3 full laps with smooth turns. With all of this data used for training and validation (again with an 80/20 split), the car was able to go completely around the track without going off course. My final training dataset was ~66K image samples, and my validation set was ~14K image samples. After observing the training and validation loss metrics, I settled on 7 epochs as the proper balance for the network weights to converge, without overfitting.
+In addition, I also included one additional dataset by going over the track for 3 full laps with smooth turns. With all of this data used for training and validation (again with an 80/20 split), the car was able to go completely around the track without going off course. My final training dataset was ~62K image samples, and my validation set was ~14K image samples. After observing the training and validation loss metrics, I settled on 7 epochs as the proper balance for the network weights to converge, without overfitting.
 
 ```text
 62328/62328 [==============================] - 139s - loss: 0.0132 - val_loss: 0.0111

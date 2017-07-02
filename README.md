@@ -62,12 +62,53 @@ ________________________________________________________________________________
 ```
 Training, Validation and Testing
 ---
-I started out by splitting the dataset which was included with the Udacity project using an 80/20 ratio into training and validation sets. I used the center image as well as the left and right camera images from this dataset with a correction of -/+ 0.1 respectively. I initially tried a correction value of -/+ 0.2, but that did not work well. In order to augment my dataset, I also flipped these three images horizontally (using the negative of the steering angle as the corresponding training output). I used the Adam optimizer with a batch size of 32 samples, and experimented with training for 2, 5, 7 and 10 epochs. After observing the performance of the network I collected additional data on stretches of the track where the car was veering off course, and included the center/left/right images from this data as well in my training and validation. I've included a video of this dataset below where I drive over two particularly troublesome stretches of the track where the car repeatedly went off track.
+I started out by splitting the dataset which was included with the Udacity project using an 80/20 ratio into training and validation sets. I used the center image as well as the left and right camera images from this dataset with a correction of -/+ 0.1 respectively. I initially tried a correction value of -/+ 0.2, but that did not work well. In order to augment my dataset, I also flipped these three images horizontally (using the negative of the steering angle as the corresponding training output). I used the Adam optimizer with a batch size of 32 samples, and experimented with training for upto 20 epochs. After observing the performance of the network I collected additional data on stretches of the track where the car was veering off course, and included the center/left/right images from this data as well in my training and validation. I've included a video of this dataset below where I drive over two particularly troublesome stretches of the track where the car repeatedly went off track.
 
 [![Augmented Data Set 1](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/Untitled.png)](https://youtu.be/RFD8soBKVxM)
 
 In addition, I also included one additional dataset by going over the track for 3 full laps with smooth turns. With all of this data used for training and validation (again with an 80/20 split), the car was able to go completely around the track without going off course. My final training dataset was ~66K image samples, and my validation set was ~14K image samples. After observing the training and validation loss metrics, I settled on 7 epochs as the proper balance for the network weights to converge, without overfitting.
 
+```text
+62328/62328 [==============================] - 139s - loss: 0.0132 - val_loss: 0.0111
+Epoch 2/20
+62328/62328 [==============================] - 128s - loss: 0.0117 - val_loss: 0.0108
+Epoch 3/20
+62328/62328 [==============================] - 127s - loss: 0.0111 - val_loss: 0.0104
+Epoch 4/20
+62328/62328 [==============================] - 128s - loss: 0.0107 - val_loss: 0.0102
+Epoch 5/20
+62328/62328 [==============================] - 127s - loss: 0.0104 - val_loss: 0.0105
+Epoch 6/20
+62328/62328 [==============================] - 127s - loss: 0.0100 - val_loss: 0.0104
+Epoch 7/20
+62328/62328 [==============================] - 127s - loss: 0.0096 - val_loss: 0.0102
+Epoch 8/20
+62328/62328 [==============================] - 127s - loss: 0.0090 - val_loss: 0.0103
+Epoch 9/20
+62328/62328 [==============================] - 127s - loss: 0.0086 - val_loss: 0.0104
+Epoch 10/20
+62328/62328 [==============================] - 127s - loss: 0.0082 - val_loss: 0.0105
+Epoch 11/20
+62328/62328 [==============================] - 127s - loss: 0.0078 - val_loss: 0.0108
+Epoch 12/20
+62328/62328 [==============================] - 127s - loss: 0.0074 - val_loss: 0.0109
+Epoch 13/20
+62328/62328 [==============================] - 127s - loss: 0.0071 - val_loss: 0.0106
+Epoch 14/20
+62328/62328 [==============================] - 127s - loss: 0.0069 - val_loss: 0.0107
+Epoch 15/20
+62328/62328 [==============================] - 127s - loss: 0.0065 - val_loss: 0.0107
+Epoch 16/20
+62328/62328 [==============================] - 127s - loss: 0.0063 - val_loss: 0.0107
+Epoch 17/20
+62328/62328 [==============================] - 127s - loss: 0.0061 - val_loss: 0.0107
+Epoch 18/20
+62328/62328 [==============================] - 127s - loss: 0.0058 - val_loss: 0.0108
+Epoch 19/20
+62328/62328 [==============================] - 127s - loss: 0.0055 - val_loss: 0.0108
+Epoch 20/20
+62328/62328 [==============================] - 127s - loss: 0.0053 - val_loss: 0.0111
+```
 Future improvements
 ---
 I plan to experiment using more data from the challenge track so the car successfully completes the challenge course as well. Currently the car makes it way through roughly 10% of the challenge course before veering off track. The training and validation losses are still fairly high after 20 epochs of training, indicating that the network weights have not yet converged. I am currently testing by increasing the number of epochs as well as collecting more data on the challenge track.

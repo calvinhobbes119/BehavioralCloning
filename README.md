@@ -6,9 +6,62 @@ I used Nvidia's end-to-end Self-Driving Deep Learning network for the Behavioral
 
 ![network](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/DriveNetwork.png) 
 
+The following the output of Keras' model.summary() method. As the print out shows, this network has approx. 350K training parameters.
+
+Layer (type)                     Output Shape          Param #     Connected to
+====================================================================================================
+lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]
+____________________________________________________________________________________________________
+cropping2d_1 (Cropping2D)        (None, 65, 320, 3)    0           lambda_1[0][0]
+____________________________________________________________________________________________________
+convolution2d_1 (Convolution2D)  (None, 31, 158, 24)   1824        cropping2d_1[0][0]
+____________________________________________________________________________________________________
+activation_1 (Activation)        (None, 31, 158, 24)   0           convolution2d_1[0][0]
+____________________________________________________________________________________________________
+convolution2d_2 (Convolution2D)  (None, 14, 77, 36)    21636       activation_1[0][0]
+____________________________________________________________________________________________________
+activation_2 (Activation)        (None, 14, 77, 36)    0           convolution2d_2[0][0]
+____________________________________________________________________________________________________
+convolution2d_3 (Convolution2D)  (None, 5, 37, 48)     43248       activation_2[0][0]
+____________________________________________________________________________________________________
+activation_3 (Activation)        (None, 5, 37, 48)     0           convolution2d_3[0][0]
+____________________________________________________________________________________________________
+convolution2d_4 (Convolution2D)  (None, 3, 35, 64)     27712       activation_3[0][0]
+____________________________________________________________________________________________________
+activation_4 (Activation)        (None, 3, 35, 64)     0           convolution2d_4[0][0]
+____________________________________________________________________________________________________
+convolution2d_5 (Convolution2D)  (None, 1, 33, 64)     36928       activation_4[0][0]
+____________________________________________________________________________________________________
+activation_5 (Activation)        (None, 1, 33, 64)     0           convolution2d_5[0][0]
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 2112)          0           activation_5[0][0]
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 100)           211300      flatten_1[0][0]
+____________________________________________________________________________________________________
+activation_6 (Activation)        (None, 100)           0           dense_1[0][0]
+____________________________________________________________________________________________________
+dropout_1 (Dropout)              (None, 100)           0           activation_6[0][0]
+____________________________________________________________________________________________________
+dense_2 (Dense)                  (None, 50)            5050        dropout_1[0][0]
+____________________________________________________________________________________________________
+activation_7 (Activation)        (None, 50)            0           dense_2[0][0]
+____________________________________________________________________________________________________
+dropout_2 (Dropout)              (None, 50)            0           activation_7[0][0]
+____________________________________________________________________________________________________
+dense_3 (Dense)                  (None, 10)            510         dropout_2[0][0]
+____________________________________________________________________________________________________
+activation_8 (Activation)        (None, 10)            0           dense_3[0][0]
+____________________________________________________________________________________________________
+dense_4 (Dense)                  (None, 1)             11          activation_8[0][0]
+====================================================================================================
+Total params: 348,219
+Trainable params: 348,219
+Non-trainable params: 0
+____________________________________________________________________________________________________
+
 Training, Validation and Testing
 ---
-I started out by splitting the dataset (which was included with the Udacity project) using an 80/20 ratio into training and validation sets. I used the center image as well as the left and right camera images from this dataset with a correction of -/+ 0.1 respectively. I initially tried a correction value of -/+ 0.2, but that did not work well. In order to augment my dataset, I also flipped these three images horizontally (using the negative of the steering angle as the corresponding training output). I used the Adam optimizer with a batch size of 32 samples, and training for 7 epochs. After observing the performance of the network I collected additional data on stretches of the track where the car was veering off course, and included them in my dataset. I've included a video of this additional dataset where I go over two particularly troublesome stretches of the track where my car repeatedly went off track. In addition, I also included one additional dataset by going over the track for 3 full laps with smooth turns. With this data, the car was able to go completely around the track without going off course. My final training dataset was ~66K image samples, and my validation set was ~14K image samples.
+I started out by splitting the dataset which was included with the Udacity project using an 80/20 ratio into training and validation sets. I used the center image as well as the left and right camera images from this dataset with a correction of -/+ 0.1 respectively. I initially tried a correction value of -/+ 0.2, but that did not work well. In order to augment my dataset, I also flipped these three images horizontally (using the negative of the steering angle as the corresponding training output). I used the Adam optimizer with a batch size of 32 samples, and experimented with training for 2, 5, 7 and 10 epochs. After observing the performance of the network I collected additional data on stretches of the track where the car was veering off course, and included the center/left/right images from this data as well in my training and validation. I've included a video of this additional dataset where I go over two particularly troublesome stretches of the track where the car repeatedly went off track. In addition, I also included one additional dataset by going over the track for 3 full laps with smooth turns. With all of this data used for training and validation (again with an 80/20 split), the car was able to go completely around the track without going off course. My final training dataset was ~66K image samples, and my validation set was ~14K image samples. After observing the training and validation loss metrics, I settled on 7 epochs as the proper balance for the network weights to converge, without overfitting.
 
 [![Augmented Data Set 1](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/Untitled.png)](https://youtu.be/RFD8soBKVxM)
 

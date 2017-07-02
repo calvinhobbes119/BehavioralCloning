@@ -55,8 +55,7 @@ activation_8 (Activation)        (None, 10)            0           dense_3[0][0]
 ____________________________________________________________________________________________________
 dense_4 (Dense)                  (None, 1)             11          activation_8[0][0]
 ====================================================================================================
-Total params: 348,219
-Trainable params: 348,219
+Total params: 348,219Trainable params: 348,219
 Non-trainable params: 0
 ____________________________________________________________________________________________________
 ```
@@ -110,6 +109,7 @@ Epoch 20/20
 62328/62328 [==============================] - 127s - loss: 0.0053 - val_loss: 0.0111
 ```
 ![network](https://github.com/calvinhobbes119/BehavioralCloning/blob/master/myfig.png) 
+
 Future improvements
 ---
 I plan to experiment using more data from the challenge track so the car successfully completes the challenge course as well. Currently the car makes it way through roughly 10% of the challenge course before veering off track. The training and validation losses are still fairly high after 20 epochs of training, indicating that the network weights have not yet converged. I am currently testing by increasing the number of epochs as well as collecting more data on the challenge track.

@@ -8,6 +8,7 @@ I used Nvidia's end-to-end Self-Driving Deep Learning network for the Behavioral
 
 The following the output of Keras' model.summary() method. As the print out shows, this network has approx. 350K training parameters.
 
+```text
 Layer (type)                     Output Shape          Param #     Connected to
 ====================================================================================================
 lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]
@@ -58,7 +59,7 @@ Total params: 348,219
 Trainable params: 348,219
 Non-trainable params: 0
 ____________________________________________________________________________________________________
-
+```
 Training, Validation and Testing
 ---
 I started out by splitting the dataset which was included with the Udacity project using an 80/20 ratio into training and validation sets. I used the center image as well as the left and right camera images from this dataset with a correction of -/+ 0.1 respectively. I initially tried a correction value of -/+ 0.2, but that did not work well. In order to augment my dataset, I also flipped these three images horizontally (using the negative of the steering angle as the corresponding training output). I used the Adam optimizer with a batch size of 32 samples, and experimented with training for 2, 5, 7 and 10 epochs. After observing the performance of the network I collected additional data on stretches of the track where the car was veering off course, and included the center/left/right images from this data as well in my training and validation. I've included a video of this additional dataset where I go over two particularly troublesome stretches of the track where the car repeatedly went off track. In addition, I also included one additional dataset by going over the track for 3 full laps with smooth turns. With all of this data used for training and validation (again with an 80/20 split), the car was able to go completely around the track without going off course. My final training dataset was ~66K image samples, and my validation set was ~14K image samples. After observing the training and validation loss metrics, I settled on 7 epochs as the proper balance for the network weights to converge, without overfitting.
